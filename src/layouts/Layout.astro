@@ -1,0 +1,166 @@
+---
+import { authorName, authorUrl, repoURL } from "../utils/meta";
+import "../styles/index.css";
+import { ViewTransitions } from "astro:transitions";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: URL;
+}
+
+const { title, description } = Astro.props;
+
+let ogImage = Astro.props.ogImage;
+
+const completeTitle = `${title}${title ? " • " : ""}${authorName}`;
+if (!ogImage) {
+  ogImage = new URL("/v1/generate/og/default.png", Astro.url);
+}
+interface PagesArray {
+  title: string;
+  url: string;
+}
+const pages = await Astro.glob("../pages/*.astro");
+const pagesArray: PagesArray[] = [];
+
+for (const page of pages) {
+  if (page.url) {
+    if (page.url.includes("/404")) {
+      continue;
+    }
+    let pageTitle = page.url?.replace("/", "").replace("-", " ") || "";
+    let pageURL = page.url;
+    if (pageTitle) {
+      pagesArray.push({ title: pageTitle, url: pageURL });
+    }
+  }
+}
+
+const contacts = [
+  {
+    title: "Bluesky",
+    url: "https://bsky.app/profile/jacobdalamb.dev",
+  },
+  {
+    title: "Threads",
+    url: "https://www.threads.net/@jacobdalamb",
+  },
+  {
+    title: "Read.cv",
+    url: "https://read.cv/jacobdalamb",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.webp" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{completeTitle}</title>
+    <meta name="author" content={authorName} />
+    <link rel="author" href={authorUrl} />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:title" content={completeTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:title" content={completeTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <ViewTransitions />
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="/">
+          <!--?xml version="1.0" standalone="no"?-->
+          <svg
+            id="logo"
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="180.000000pt"
+            height="180.000000pt"
+            viewBox="0 0 180.000000 180.000000"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <g
+              transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)"
+              stroke="none"
+            >
+              <path
+                d="M533 1518 c-28 -31 -83 -300 -67 -326 10 -15 37 -17 286 -20 l275 -2
+                    -34 -163 c-47 -227 -69 -312 -89 -343 -20 -29 -69 -54 -107 -54 -34 0 -74 35
+                    -82 70 -13 59 -17 60 -245 60 l-210 0 -16 -25 c-23 -35 -15 -135 15 -197 49
+                    -101 178 -193 331 -234 87 -24 297 -24 394 -1 105 26 191 72 254 136 55 54
+                    117 157 141 231 16 51 181 821 181 846 0 44 1 44 -515 44 l-492 0 -20 -22z"
+              ></path>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </header>
+    <slot />
+    <footer>
+      <div>
+        {
+          pagesArray.map((page) => (
+            <>
+              <a href={page.url} set:text={page.title} />
+              <span id="bull">&bull;</span>
+            </>
+          ))
+        }
+      </div>
+      <div>
+        {
+          contacts.map((item) => {
+            return item.title ? (
+              <>
+                <a
+                  style="display: flex; gap: var(--size-1);"
+                  set:text={item.title}
+                  target="_blank"
+                  rel="external"
+                  href={item.url}
+                />
+                <span id="bull">&bull;</span>
+              </>
+            ) : (
+              <span set:text={item.title} />
+            );
+          })
+        }
+      </div>
+      <div>
+        <small>
+          <span set:text=`© ${new Date().getFullYear()} ${authorName}` />
+        </small>
+        <small>
+          <a href={`${repoURL}`} set:text="source code" />
+        </small>
+
+        <a href="https://astro.build">
+          <Image
+            src="https://astro.badg.es/v2/built-with-astro/tiny.svg"
+            alt="Built with Astro"
+            width="120"
+            height="20"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
