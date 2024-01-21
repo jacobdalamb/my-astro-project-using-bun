@@ -1,4 +1,3 @@
-import { $ } from "bun";
 import fse from "fs-extra/esm";
 async function updateVersion() {
 	const path = "./package.json";
