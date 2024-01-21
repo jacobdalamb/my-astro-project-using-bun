@@ -27,3 +27,4 @@ pnpm-debug.log*
 **/*.mjs
 **/*.cjs
 **/*.json
+!package.json
