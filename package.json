@@ -1,7 +1,7 @@
 {
   "name": "my-astro-project-using-bun",
   "type": "module",
-  "version": "2024.02.17",
+  "version": "2024.02.19",
   "private": true,
   "description": "My personal website.",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "lint:fix": "biome lint --apply .",
     "check-format": "prettier --check . && biome check .",
     "check-format:fix": "biome check --apply .",
-    "precommit": "nr check-format && bun ./updateVersion.ts && nr lint && knip",
+    "precommit": "nr check-format && bun ./updateVersion.ts && nr lint",
     "predeploy": "astro build && vercel deploy"
   },
   "dependencies": {
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
-    "fsx-node": "^0.6.1",
+    "@humanfs/node": "^0.12.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"
   }
