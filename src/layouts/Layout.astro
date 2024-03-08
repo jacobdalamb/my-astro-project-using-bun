@@ -1,12 +1,12 @@
 ---
-import { authorName, authorUrl, repoURL } from "../utils/meta";
-import { ViewTransitions } from "astro:transitions";
 import { Image } from "astro:assets";
+import { ViewTransitions } from "astro:transitions";
+import { authorName, authorUrl, repoURL } from "../utils/meta";
 
 interface Props {
-  title: string;
-  description: string;
-  ogImage?: URL;
+	title: string;
+	description: string;
+	ogImage?: URL;
 }
 
 const { title, description } = Astro.props;
@@ -15,41 +15,41 @@ let ogImage = Astro.props.ogImage;
 
 const completeTitle = `${title}${title ? " • " : ""}${authorName}`;
 if (!ogImage) {
-  ogImage = new URL("/v1/generate/og/default.png", Astro.url);
+	ogImage = new URL("/v1/generate/og/default.png", Astro.url);
 }
 interface PagesArray {
-  title: string;
-  url: string;
+	title: string;
+	url: string;
 }
 const pages = await Astro.glob("../pages/*.astro");
 const pagesArray: PagesArray[] = [];
 
 for (const page of pages) {
-  if (page.url) {
-    if (page.url.includes("/404")) {
-      continue;
-    }
-    let pageTitle = page.url?.replace("/", "").replace("-", " ") || "";
-    let pageURL = page.url;
-    if (pageTitle) {
-      pagesArray.push({ title: pageTitle, url: pageURL });
-    }
-  }
+	if (page.url) {
+		if (page.url.includes("/404")) {
+			continue;
+		}
+		const pageTitle = page.url?.replace("/", "").replace("-", " ") || "";
+		const pageURL = page.url;
+		if (pageTitle) {
+			pagesArray.push({ title: pageTitle, url: pageURL });
+		}
+	}
 }
 
 const contacts = [
-  {
-    title: "Bluesky",
-    url: "https://bsky.app/profile/jacobdalamb.dev",
-  },
-  {
-    title: "Threads",
-    url: "https://www.threads.net/@jacobdalamb",
-  },
-  {
-    title: "Read.cv",
-    url: "https://read.cv/jacobdalamb",
-  },
+	{
+		title: "Bluesky",
+		url: "https://bsky.app/profile/jacobdalamb.dev",
+	},
+	{
+		title: "Threads",
+		url: "https://www.threads.net/@jacobdalamb",
+	},
+	{
+		title: "Read.cv",
+		url: "https://read.cv/jacobdalamb",
+	},
 ];
 ---
 
