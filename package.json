@@ -1,50 +1,52 @@
 {
-	"name": "my-astro-project-using-bun",
-	"type": "module",
-	"version": "2024.03.08",
-	"private": true,
-	"description": "My personal website.",
-	"license": "MIT",
-	"keywords": ["personal-website"],
-	"author": "Jacob Lamb <jacobtlamb@hey.com> (https://www.jacobdalamb.dev/)",
-	"homepage": "https://github.com/jacobdalamb/my-astro-project-using-bun#readme",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/jacobdalamb/my-astro-project-using-bun.git"
-	},
-	"engines": {
-		"node": "18.18.x",
-		"bun": ">=1.0.30"
-	},
-	"pkgx": "node@18.18.2 bun@1.0.30",
-	"scripts": {
-		"astro": "astro",
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"format": "prettier -w . && biome format --write .",
-		"lint": "biome lint . && astro check",
-		"lint:fix": "biome lint --apply .",
-		"check-format": "prettier --check . && biome check .",
-		"check-format:fix": "biome check --apply .",
-		"precommit": "nr check-format && na ./updateVersion.ts && nr lint",
-		"predeploy": "astro build && vercel deploy"
-	},
-	"dependencies": {
-		"@astrojs/check": "latest",
-		"@astrojs/vercel": "7.3.5",
-		"astro": "4.4.15",
-		"dayjs": "^1.11.10",
-		"humanize-url": "^3.0.0",
-		"octokit": "^3.1.2",
-		"open-props": "^1.6.21",
-		"somebody": "^3.0.0",
-		"typescript": "^5.4.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.6.0",
-		"@humanfs/node": "^0.14.1",
-		"prettier": "^3.2.5"
-	}
+  "name": "my-astro-project-using-bun",
+  "type": "module",
+  "version": "2024.03.15",
+  "private": true,
+  "description": "My personal website.",
+  "license": "MIT",
+  "keywords": [
+    "personal-website"
+  ],
+  "author": "Jacob Lamb <jacobtlamb@hey.com> (https://www.jacobdalamb.dev/)",
+  "homepage": "https://github.com/jacobdalamb/my-astro-project-using-bun#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobdalamb/my-astro-project-using-bun.git"
+  },
+  "engines": {
+    "node": "18.18.x",
+    "bun": ">=1.0.30"
+  },
+  "pkgx": "node@18.18.2 bun@1.0.30",
+  "scripts": {
+    "astro": "astro",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier -w . && biome format --write .",
+    "lint": "biome lint . && astro check",
+    "lint:fix": "biome lint --apply .",
+    "check-format": "prettier --check . && biome check .",
+    "check-format:fix": "biome check --apply .",
+    "precommit": "nr check-format && na ./updateVersion.ts && nr lint",
+    "predeploy": "astro build && vercel deploy"
+  },
+  "dependencies": {
+    "@astrojs/check": "latest",
+    "@astrojs/vercel": "7.3.6",
+    "astro": "4.5.4",
+    "dayjs": "^1.11.10",
+    "humanize-url": "^3.0.0",
+    "octokit": "^3.1.2",
+    "open-props": "^1.6.21",
+    "somebody": "^3.0.0",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.6.1",
+    "@humanfs/node": "^0.15.0",
+    "prettier": "^3.2.5"
+  }
 }
