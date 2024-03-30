@@ -14,9 +14,8 @@
 	},
 	"engines": {
 		"node": "20.11.x",
-		"bun": ">=1.0.32"
+		"bun": ">=1.0.35"
 	},
-	"pkgx": "bun@1.0.32",
 	"scripts": {
 		"astro": "astro",
 		"dev": "astro dev",
