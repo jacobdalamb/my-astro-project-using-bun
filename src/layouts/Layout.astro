@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { ViewTransitions } from "astro:transitions";
-import { authorName, authorUrl, repoURL } from "../utils/meta";
+import { authorName, authorUrl, repoURL, pkgName } from "../utils/meta";
 
 interface Props {
 	title: string;
@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 
 let ogImage = Astro.props.ogImage;
 
-const completeTitle = `${title}${title ? " • " : ""}${authorName}`;
+const completeTitle = pkgName;
 if (!ogImage) {
 	ogImage = new URL("/v1/generate/og/default.png", Astro.url);
 }

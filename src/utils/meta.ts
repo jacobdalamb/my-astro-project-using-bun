@@ -1,6 +1,7 @@
 import { parse } from "somebody";
 import pkg from "../../package.json";
 const author = pkg.author;
+const pkgName = pkg.name;
 const parsedAuthor = parse(author);
 const repoURL = pkg.repository.url;
 const description = pkg.description;
