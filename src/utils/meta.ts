@@ -10,4 +10,11 @@ const authorName = parsedAuthor.name;
 const authorUrl = parsedAuthor.url;
 const authorUrlString = authorUrl.toString();
 
-export { authorName, authorUrl, repoURL, authorUrlString, description, pkgName };
+export {
+	authorName,
+	authorUrl,
+	repoURL,
+	authorUrlString,
+	description,
+	pkgName,
+};
